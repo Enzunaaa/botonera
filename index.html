@@ -25,13 +25,13 @@ body {
   color: #00f7ff;
 }
 
-/* fondo animado tipo grid */
+/* fondo grid futurista */
 body::before {
   content: "";
   position: absolute;
   width: 200%;
   height: 200%;
-  background-image: 
+  background-image:
     linear-gradient(rgba(0,255,255,0.05) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0,255,255,0.05) 1px, transparent 1px);
   background-size: 50px 50px;
@@ -121,10 +121,9 @@ h1 {
 <div class="container">
   <h1>⚡ PANEL DE CONTROL ⚡</h1>
 
-  <!-- BOTONES -->
-  <button class="btn" onclick="accion('boton1')">ACTIVAR SISTEMA 1</button>
-  <button class="btn" onclick="accion('boton2')">ACTIVAR SISTEMA 2</button>
-  <button class="btn" onclick="accion('boton3')">MODO DEFENSA</button>
+  <button class="btn" onclick="accion('1')">ACTIVAR SISTEMA 1</button>
+  <button class="btn" onclick="accion('2')">ACTIVAR SISTEMA 2</button>
+  <button class="btn" onclick="accion('3')">MODO ESPECIAL</button>
 
   <div class="footer">
     INTERFACE v3.0 • NEURAL LINK ACTIVE
@@ -133,10 +132,29 @@ h1 {
 
 <script>
 function accion(id){
-  console.log("Acción ejecutada:", id);
 
-  // acá conectás tus funciones reales
-  alert("Ejecutado: " + id);
+  let audio;
+
+  if(id === '1'){
+    audio = new Audio('1.mp3');
+  }
+
+  if(id === '2'){
+    audio = new Audio('2.mp3');
+  }
+
+  if(id === '3'){
+    audio = new Audio('hola soy pablo el ro(1).mp3');
+  }
+
+  if(audio){
+    audio.currentTime = 0;
+    audio.play().catch(e => {
+      console.log("Error reproduciendo audio:", e);
+    });
+  }
+
+  console.log("Ejecutado:", id);
 }
 </script>
 
