@@ -1,114 +1,143 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Botonera</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Botonera Futurista</title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap');
 
-body{
-    margin:0;
-    background:#1f1f1f;
-    font-family:Arial,sans-serif;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Orbitron', sans-serif;
 }
 
-.contenedor{
-    width:90%;
-    max-width:450px;
+body {
+  height: 100vh;
+  overflow: hidden;
+  background: radial-gradient(circle at top, #0b0f1a, #000);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #00f7ff;
 }
 
-button{
-    width:100%;
-    height:90px;
-    margin:15px 0;
-    border:none;
-    border-radius:18px;
-    color:white;
-    font-size:30px;
-    font-weight:bold;
-    cursor:pointer;
-    transition:.2s;
+/* fondo animado tipo grid */
+body::before {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background-image: 
+    linear-gradient(rgba(0,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,255,255,0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: moveGrid 10s linear infinite;
+  transform: rotate(20deg);
 }
 
-button:active{
-    transform:scale(.97);
+@keyframes moveGrid {
+  from { transform: translateY(0) rotate(20deg); }
+  to { transform: translateY(-50px) rotate(20deg); }
 }
 
-#pablo{
-    background:#d32f2f;
+.container {
+  position: relative;
+  z-index: 2;
+  width: 90%;
+  max-width: 400px;
+  padding: 20px;
+  background: rgba(0, 255, 255, 0.05);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 25px rgba(0,255,255,0.2);
+  text-align: center;
+  animation: float 4s ease-in-out infinite;
 }
 
-#uno{
-    background:#1976d2;
+@keyframes float {
+  0%,100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
 }
 
-#dos{
-    background:#388e3c;
+h1 {
+  font-size: 18px;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px #00f7ff;
 }
 
+.btn {
+  width: 100%;
+  padding: 15px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #00f7ff, #0066ff);
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 0 15px rgba(0,255,255,0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(0,255,255,0.8);
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,0.2);
+  transform: skewX(-20deg);
+  transition: 0.5s;
+}
+
+.btn:hover::before {
+  left: 120%;
+}
+
+.footer {
+  margin-top: 15px;
+  font-size: 10px;
+  opacity: 0.6;
+}
 </style>
-
 </head>
 
 <body>
 
-<div class="contenedor">
+<div class="container">
+  <h1>⚡ PANEL DE CONTROL ⚡</h1>
 
-<button id="pablo">🤖 COMIENZO ROBÓTICO</button>
+  <!-- BOTONES -->
+  <button class="btn" onclick="accion('boton1')">ACTIVAR SISTEMA 1</button>
+  <button class="btn" onclick="accion('boton2')">ACTIVAR SISTEMA 2</button>
+  <button class="btn" onclick="accion('boton3')">MODO DEFENSA</button>
 
-<button id="uno">1️⃣ UNO</button>
-
-<button id="dos">2️⃣ DOS</button>
-
+  <div class="footer">
+    INTERFACE v3.0 • NEURAL LINK ACTIVE
+  </div>
 </div>
 
-<audio id="aPablo" src="Hola%20soy%20Pablo%20el%20ro%20(1).mp3"></audio>
-<audio id="aUno" src="1.mp3"></audio>
-<audio id="aDos" src="2.mp3"></audio>
-
 <script>
+function accion(id){
+  console.log("Acción ejecutada:", id);
 
-const audios=[
-document.getElementById("aPablo"),
-document.getElementById("aUno"),
-document.getElementById("aDos")
-];
-
-function detener(){
-
-audios.forEach(a=>{
-a.pause();
-a.currentTime=0;
-});
-
+  // acá conectás tus funciones reales
+  alert("Ejecutado: " + id);
 }
-
-document.getElementById("pablo").onclick=()=>{
-
-detener();
-document.getElementById("aPablo").play();
-
-}
-
-document.getElementById("uno").onclick=()=>{
-
-detener();
-document.getElementById("aUno").play();
-
-}
-
-document.getElementById("dos").onclick=()=>{
-
-detener();
-document.getElementById("aDos").play();
-
-}
-
 </script>
 
 </body>
